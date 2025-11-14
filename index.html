@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Color Slicer</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app">
+        <div class="container">
+            <div class="card" role="application" aria-label="Color Slicer">
+                <header>
+                    <div class="logo">CS</div>
+                    <div>
+                        <h1>Color Slicer</h1>
+                    </div>
+                    <div>
+                        <select id="language-selector" class="btn">
+                            <option value="es" style="color: black">ES</option>
+                            <option value="en" style="color: black">EN</option>
+                        </select>
+                    </div>
+                </header>
+
+                <!-- Main menu -->
+                <div class="menu" id="mainMenu">
+                    <button class="btn primary" id="playBtn" data-i18n="play"></button>
+                    <button class="btn ghost" id="howBtn" data-i18n="howtoplay"></button>
+                </div>
+
+                <!-- Game area -->
+                <div class="gameArea" id="gameArea" aria-hidden="true">
+                    <div class="targets">
+                        <div>
+                            <div class="label" data-i18n="goal" style="text-align: center;"></div>
+                            <div id="targetSwatch" class="swatch" aria-hidden="true"></div>
+                        </div>
+                        <div style="text-align:center;flex:1">
+                            <div class="label">
+                                <p data-i18n="round" style="text-align:center;flex:1"></p><span id="roundNum">1</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="label" data-i18n="actual" style="text-align: center;"></div>
+                            <div id="currentSwatch" class="swatch"></div>
+                        </div>
+                    </div>
+
+                    <div class="barWrap">
+                        <div class="bar" id="colorBar" role="img" aria-label="barra de colores">
+                            <canvas id="barCanvas" class="barCanvas" width="800" height="36"></canvas>
+                            <div id="marker" class="marker" style="left:0"></div>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="stopBtn" class="bigBtn" data-i18n="stop"></button>
+                        <button id="retryBtn" class="bigBtn small" data-i18n="retry"></button>
+                    </div>
+
+                    <div class="meta">
+                        <div class="muted statLine">
+                            <p data-i18n="pre"></p>
+                            <span id="lastPrecision">0%</span>
+                        </div>
+
+                        <div class="muted statLine">
+                            <p data-i18n="points"></p>
+                            <strong id="score">0</strong>
+                        </div>
+
+                        <div class="muted statLine">
+                            <p data-i18n="highscore"></p>
+                            <span id="highscore">0</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal result -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="sheet">
+            <div style="margin-top:12px;text-align: center;">
+                <div class="resultScore" id="finalScore">0</div>
+                <div class="muted"><span id="finalVerdict">-</span></div>
+                <div style="height:12px"></div>
+                <div style="display:flex;gap:8px;margin-top:12px">
+                    <button id="playAgain" class="btn primary" data-i18n="playagain"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer data-i18n="footer"></footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

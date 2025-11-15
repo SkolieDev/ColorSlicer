@@ -49,8 +49,16 @@ function init() {
     drawBar();
     loadHighscore();
     attachEvents();
+    logoCS();
+}
 
-    gameArea.classList.add("hidden");
+function logoCS() {
+    stopAnimation();
+    document.getElementById('targets').classList.add("hidden");
+    document.getElementById('controls').classList.add("hidden");
+    document.getElementById('meta').classList.add("hidden");
+    running = true;
+    animate();
 }
 
 function drawBar() {
@@ -67,7 +75,6 @@ function attachEvents() {
     playBtn.addEventListener('click', startGame);
     infinityBtn.addEventListener('click', startInfinite);
     howBtn.addEventListener('click', () => {
-        console.log("Como jugar");
         document.getElementById("howModal").classList.add("open");
     });
     document.getElementById("closeHow").addEventListener("click", () => {
@@ -97,8 +104,8 @@ function attachEvents() {
 function homeScreen() {
     retryBtn.classList.add("hidden");
     mainMenu.classList.remove("hidden");
-    gameArea.style.display = "none";
     infiniteMode = false;
+    logoCS();
 }
 
 function startInfinite() {
@@ -113,6 +120,10 @@ function randomTarget() {
 
 function startGame() {
     stopAnimation();
+    running = false;
+    document.getElementById('targets').classList.remove("hidden");
+    document.getElementById('controls').classList.remove("hidden");
+    document.getElementById('meta').classList.remove("hidden");
     gameArea.classList.remove("hidden");
     retryBtn.classList.add("hidden");
     mainMenu.classList.add("hidden");
@@ -218,7 +229,6 @@ function onStop() {
             running = true;
             animate();
         }, 700);
-        console.log(speed);
         return;
     } else if (round < TOTAL_ROUNDS) {
         round++;

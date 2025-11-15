@@ -25,16 +25,9 @@
                     </div>
                 </header>
 
-                <!-- Main menu -->
-                <div class="menu" id="mainMenu">
-                    <button class="btn primary" id="playBtn" data-i18n="play"></button>
-                    <button class="btn primary" id="infinityBtn" data-i18n="infinitymode"></button>
-                    <button class="btn ghost" id="howBtn" data-i18n="howtoplay"></button>
-                </div>
-
                 <!-- Game area -->
                 <div class="gameArea" id="gameArea" aria-hidden="true">
-                    <div class="targets">
+                    <div id="targets" class="targets">
                         <div>
                             <div class="label" data-i18n="goal" style="text-align: center;"></div>
                             <div id="targetSwatch" class="swatch" aria-hidden="true"></div>
@@ -57,16 +50,16 @@
                         </div>
                     </div>
 
-                    <div class="controls">
+                    <div id="controls" class="controls">
                         <button id="stopBtn" class="bigBtn" data-i18n="stop"></button>
                         <button id="retryBtn" class="bigBtn small" data-i18n="retry"></button>
                     </div>
 
-                    <div class="meta">
+                    <div id="meta" class="meta">
                         <div class="muted statLine">
                             <p data-i18n="pre"></p>
                             <span id="lastPrecision">0%</span>
-                        </div>
+                        </div> 
 
                         <div class="muted statLine">
                             <p data-i18n="points"></p>
@@ -79,6 +72,13 @@
                         </div>
 
                     </div>
+                </div>
+
+                <!-- Main menu -->
+                <div class="menu" id="mainMenu">
+                    <button class="btn primary" id="playBtn" data-i18n="play"></button>
+                    <button class="btn primary" id="infinityBtn" data-i18n="infinitymode"></button>
+                    <button class="btn ghost" id="howBtn" data-i18n="howtoplay"></button>
                 </div>
 
             </div>

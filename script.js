@@ -12,10 +12,13 @@ let speed = 2.6;
 let dir = 1;
 let targetHue = 0;
 let animId = null;
+let infiniteMode = false;
 
 // elements
+const home = document.getElementById('home');
 const mainMenu = document.getElementById('mainMenu');
 const playBtn = document.getElementById('playBtn');
+const infinityBtn = document.getElementById('infinityBtn');
 const howBtn = document.getElementById('howBtn');
 const gameArea = document.getElementById('gameArea');
 const targetSwatch = document.getElementById('targetSwatch');
@@ -59,16 +62,21 @@ function drawBar() {
     }
 }
 
-
-
 function attachEvents() {
+    home.addEventListener('click', homeScreen);
     playBtn.addEventListener('click', startGame);
-    howBtn.addEventListener('click', () => alert('Para jugar: pulsa Jugar, y cuando la barra se mueva pulsa "Cortar" para detenerla lo más cerca posible del color objetivo.'));
+    infinityBtn.addEventListener('click', startInfinite);
+    howBtn.addEventListener('click', () => {
+        console.log("Como jugar");
+        document.getElementById("howModal").classList.add("open");
+    });
+    document.getElementById("closeHow").addEventListener("click", () => {
+        document.getElementById("howModal").classList.remove("open");
+    });
 
     stopBtn.addEventListener('click', onStop);
     retryBtn.addEventListener('click', resetRound);
     playAgain.addEventListener('click', () => {
-
         startGame()
     });
 
@@ -86,12 +94,25 @@ function attachEvents() {
     });
 }
 
+function homeScreen() {
+    retryBtn.classList.add("hidden");
+    mainMenu.classList.remove("hidden");
+    gameArea.style.display = "none";
+    infiniteMode = false;
+}
+
+function startInfinite() {
+    infiniteMode = true;
+    startGame();
+}
+
 function randomTarget() {
     targetHue = Math.floor(Math.random() * 360);
     targetSwatch.style.background = `hsl(${targetHue},100%,50%)`;
 }
 
 function startGame() {
+    stopAnimation();
     gameArea.classList.remove("hidden");
     retryBtn.classList.add("hidden");
     mainMenu.classList.add("hidden");
@@ -101,6 +122,7 @@ function startGame() {
     score = 0;
     scoreEl.textContent = score;
     roundNum.textContent = round;
+    if (infiniteMode) roundNum.textContent = '∞';
     running = true;
 
     gameArea.setAttribute('aria-hidden', 'false');
@@ -179,7 +201,26 @@ function onStop() {
         easing: 'ease-out'
     });
 
-    if (round < TOTAL_ROUNDS) {
+    // --- INFINITE MODE ---
+    if (infiniteMode) {
+        if (precision >= 98) speed += 1.2;
+        else if (precision >= 90) speed += 0.7;
+        else if (precision >= 65) speed += 0.3;
+        else if (precision <= 20) speed -= 0.7;
+        else if (precision <= 50) speed -= 0.3;
+
+        speed = Math.max(0.8, Math.min(speed, 10));
+
+        setTimeout(() => {
+            randomTarget();
+            markerPos = 0;
+            dir = 1;
+            running = true;
+            animate();
+        }, 700);
+        console.log(speed);
+        return;
+    } else if (round < TOTAL_ROUNDS) {
         round++;
         roundNum.textContent = round;
         setTimeout(() => {

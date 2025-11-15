@@ -13,7 +13,7 @@
         <div class="container">
             <div class="card" role="application" aria-label="Color Slicer">
                 <header>
-                    <div class="logo">CS</div>
+                    <button id="home" class="logo">CS</button>
                     <div>
                         <h1>Color Slicer</h1>
                     </div>
@@ -28,6 +28,7 @@
                 <!-- Main menu -->
                 <div class="menu" id="mainMenu">
                     <button class="btn primary" id="playBtn" data-i18n="play"></button>
+                    <button class="btn primary" id="infinityBtn" data-i18n="infinitymode"></button>
                     <button class="btn ghost" id="howBtn" data-i18n="howtoplay"></button>
                 </div>
 
@@ -79,6 +80,7 @@
 
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -93,6 +95,17 @@
                 <div style="display:flex;gap:8px;margin-top:12px">
                     <button id="playAgain" class="btn primary" data-i18n="playagain"></button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="howModal" class="modal">
+        <div class="sheet">
+            <h2 data-i18n="howtoplay"></h2>
+            <p data-i18n="desc"></p>
+            <div style="height:12px"></div>
+            <div style="display:flex;gap:8px;margin-top:12px">
+                <button id="closeHow" class="btn primary" data-i18n="close"></button>
             </div>
         </div>
     </div>

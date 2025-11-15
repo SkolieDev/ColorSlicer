@@ -1,7 +1,10 @@
 {
   "es": {
     "play": "Jugar",
+    "infinitymode": "Modo infinito",
     "howtoplay": "Cómo jugar",
+    "desc": "Detén la barra lo más cerca del color objetivo.",
+    "close": "Cerrar",
     "language": "Idioma",
     "score": "Puntuación",
     "goal": "Objetivo",
@@ -23,7 +26,10 @@
   },
   "en": {
     "play": "Play",
+    "infinitymode": "Infinity Mode",
     "howtoplay": "How to play",
+    "desc": "Stop the bar as close as possible to the target color.",
+    "close": "Close",
     "language": "Language",
     "score": "Score",
     "goal": "Goal",
